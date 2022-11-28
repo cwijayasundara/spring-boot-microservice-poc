@@ -4,6 +4,7 @@ import org.cham.postgres.tradeservice.Repository.OrderRepository;
 import org.cham.postgres.tradeservice.domain.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.dao.DataAccessException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
@@ -43,7 +44,7 @@ class OrderServiceUnitTest {
 
     @Test
     void shouldTestDbErrorWhileSavingOrder(){
-        Mockito.doThrow(new RuntimeException()).when(orderRepository).save(any());
+        Mockito.doThrow(new DataAccessException(DB_ERROR_MESSAGE){}).when(orderRepository).save(any());
         assertThrows(RuntimeException.class, () -> orderService.addOrder(testOrder));
     }
 
@@ -59,7 +60,7 @@ class OrderServiceUnitTest {
 
     @Test
     void shouldTestDbErrorWhileGettingAllOrders(){
-        Mockito.doThrow(new RuntimeException()).when(orderRepository).findAll();
+        Mockito.doThrow(new DataAccessException(DB_ERROR_MESSAGE){}).when(orderRepository).findAll();
         assertThrows(RuntimeException.class, () -> {
             orderService.getAllOrders();
         });
@@ -77,7 +78,7 @@ class OrderServiceUnitTest {
 
     @Test
     void shouldTestDbErrorWhileGetOrderById(){
-        Mockito.doThrow(new RuntimeException()).when(orderRepository).findById(anyLong());
+        Mockito.doThrow(new DataAccessException(DB_ERROR_MESSAGE){}).when(orderRepository).findById(anyLong());
         assertThrows(RuntimeException.class, () -> {
             orderService.getOrderById(1L);
         });
@@ -95,7 +96,7 @@ class OrderServiceUnitTest {
 
     @Test
     void shouldTestDbErrorWhileGetORderByCustomerId(){
-        Mockito.doThrow(new RuntimeException()).when(orderRepository).getOrdersByCustomerId(anyInt());
+        Mockito.doThrow(new DataAccessException(DB_ERROR_MESSAGE){}).when(orderRepository).getOrdersByCustomerId(anyInt());
         assertThrows(RuntimeException.class, () -> {
             orderService.getOrdersByCustomerId(1);
         });

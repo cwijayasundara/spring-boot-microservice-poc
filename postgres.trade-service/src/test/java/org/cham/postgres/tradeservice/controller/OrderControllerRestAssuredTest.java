@@ -22,15 +22,12 @@ import io.restassured.RestAssured;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Slf4j
 class OrderControllerRestAssuredTest {
-
     @LocalServerPort
     @Getter
     private int port;
-
     @Autowired
     private OrderRepository orderRepository;
     private final String APPLICATION_JSON = "application/json";
-
     Order testOrder = new Order(11L, 1, "Bill Gates", 1, 100, LocalDateTime.now(),
             OrderType.BUY, 1000);
 
