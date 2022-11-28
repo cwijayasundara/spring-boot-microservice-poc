@@ -1,0 +1,13 @@
+server:
+    port: 8080
+spring:
+    datasource:
+        hikari:
+            connectionTimeout: 20000
+            maximumPoolSize: 5
+        password: postgres
+        url: jdbc:postgresql://localhost:5432/postgres_database
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: create

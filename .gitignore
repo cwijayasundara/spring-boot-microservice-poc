@@ -1,0 +1,8 @@
+.idea
+postgres.product-service/.idea
+postgres.product-service/.mvn
+postgres.product-service/target
+
+postgres.trade-service/.idea
+postgres.trade-service/.mvn
+postgres.trade-service/target
